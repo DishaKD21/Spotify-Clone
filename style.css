@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Flow+Circular&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+  font-family: "Montserrat", sans-serif;
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+.left{
+   width: 25vw;
+   padding: 10px;
+}
+.right{
+  width: 75vw;
+}
+.home ul li{
+  display: flex;
+  gap: 15px;
+ width: 15px;
+ list-style: none;
+ padding-top: 14px;
+ font-weight: bold;
+}
+.heading{
+  display: flex;
+  gap: 15px;
+ width: 100%;
+align-items: center;
+ padding-top: 14px;
+ padding: 23px 14px;
+ font-weight: bold;
+}
+.heading img{
+  width: 25px;
+}
+.library{
+  min-height: 80vh;
+  position: relative;
+}
+.footer{
+  display: flex;
+  font-size: 10px;
+  color: grey;
+  gap: 13px;
+  position: absolute;
+  bottom: 0;
+}
+.footer a{
+  color: grey;
+  text-decoration: none;
+}
