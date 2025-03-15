@@ -30,3 +30,20 @@
 .p-1{
     padding: 10px;
 }
+
+
+/* For Webkit Browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #222; /* Dark background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333; /* Dark gray scrollbar */
+    border-radius: 6px;
+}
+
+
