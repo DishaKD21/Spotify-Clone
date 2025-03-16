@@ -149,6 +149,9 @@ align-items: center;
   gap: 16px;
   margin-bottom: 6px;
 }
+.songbutton img{
+  cursor: pointer;
+}
 .songsList{
   height: 544px;
   overflow: auto;
@@ -198,5 +201,15 @@ align-items: center;
   background-color: black;
   position: relative;
   bottom: 6px;
-  left: 45%;
+  left: 0%;
+}
+
+.abovebar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.songinfo , .songtime{
+ color: black;
+ padding: 0 12px;
 }
