@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Flow+Circular&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+:root{
+   --a:0;
+}
 *{
     margin: 0;
     padding: 0;
@@ -94,6 +99,7 @@ align-items: center;
   border-radius: 5px;
   background-color:#1f1f1f;
   position: relative;
+  transition: all 0.9s;
 }
 .card img{
   width: 100%;
@@ -106,8 +112,14 @@ align-items: center;
   position: absolute;
   top: 150px;
   right: 17px;
-  opacity: 0;
+  opacity: var(--a);
   transition: 1s ease-out;
+
+}
+.card:hover{
+  background-color: rgb(44, 44, 44);
+  cursor:pointer;
+  --a:1;
 }
 /***************login,signup************/
 .buttons > *{
@@ -238,8 +250,11 @@ align-items: center;
 .songinfo , .songtime{
  color: black;
  padding: 0 12px;
+ width: 250px;
 }
-
+.songtime{
+  text-align: right;
+}
 /***************media-queries*************/
 
 @media(max-width:1400px){
