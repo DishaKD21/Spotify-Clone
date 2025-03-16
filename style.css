@@ -8,6 +8,7 @@ body{
     background-color: black;
     color: rgb(255, 255, 255);
 }
+/************* left ******************/
 .left{
    width: 25vw;
    padding: 10px;
@@ -16,11 +17,13 @@ body{
   width: 125px;
   height: 60px;
 }
+/************** right ****************/
 .right{
   width: 75vw;
   margin: 15px 0;
   position: relative;
 }
+/*********heading button's home and search and that area*********** */
 .home ul li{
   display: flex;
   gap: 15px;
@@ -41,10 +44,12 @@ align-items: center;
 .heading img{
   width: 25px;
 }
+/*******library area*********/
 .library{
   min-height: 80vh;
   position: relative;
 }
+/******* footer **************/
 .footer{
   display: flex;
   font-size: 10px;
@@ -69,6 +74,7 @@ align-items: center;
   padding: 20px;
 }
 
+/**************playlist************/
 .spotifyPlaylists{
   padding: 16px;
 }
@@ -78,7 +84,7 @@ align-items: center;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 70vh;
 }
 
@@ -103,6 +109,7 @@ align-items: center;
   opacity: 0;
   transition: 1s ease-out;
 }
+/***************login,signup************/
 .buttons > *{
   padding: 0 12px;
 }
@@ -135,14 +142,20 @@ align-items: center;
  font-size: 17px;
 }
 
-.playbar{
-  position: fixed;
-  bottom: 25px;
-  background-color: rgb(218 218 218);
-  width: 70vw;
-  padding: 8px;
-  border-radius: 10px;
+/* *************hamburger***************** */
+.close{
+  display: none;
 }
+.hamburger{
+  display: none;
+}
+.hamburgerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+/************your library **************/
 .songbutton{
   display: flex;
   justify-content: center;
@@ -185,14 +198,27 @@ align-items: center;
   width: 64px;
   padding: 12px;
 }
+
+/******* for seekbar *************/
+.playbar{
+  position: fixed;
+  bottom: 25px;
+  background-color: rgb(218 218 218);
+  width: 70vw;
+  padding: 8px;
+  border-radius: 10px;
+  width: 70vw;
+  min-height: 40px;
+}
 .seekbar{
-  height: 2.5px;
+  height: 5px;
   width: 98%;
   background-color: rgb(89, 89, 89);
   position: absolute;
   bottom: 0;
   border-radius: 10px;
   margin: 5px;
+  cursor: pointer;
 }
 .circle{
   height: 13px;
@@ -200,7 +226,7 @@ align-items: center;
   border-radius: 30px;
   background-color: black;
   position: relative;
-  bottom: 6px;
+  bottom: 4px;
   left: 0%;
 }
 
@@ -213,3 +239,48 @@ align-items: center;
  color: black;
  padding: 0 12px;
 }
+
+/***************media-queries*************/
+
+@media(max-width:1400px){
+   h1{
+    font-size: 30px;
+    
+   }
+    .left{
+      background-color: black;
+      position: absolute;
+      left: -120%;
+      transition: all .3s;
+      z-index: 1;
+      width: 370px;
+    }
+    .right{
+      width: 100vw;
+      margin: 0;
+    }
+    .playbar{
+      width: calc(100vw - 80px);
+      font-size: 10px;
+    }
+    .seekbar{
+      width: calc(100vw - 80px);
+    }
+    .hamburger{
+      display: block;
+    }
+    .close{
+      display: block;
+    }
+    .cartContainer{
+      justify-content: center;
+      margin: 0;
+      padding: 20px;
+    }
+    .card{
+      width: 90vw;
+    }
+    
+
+}
+
