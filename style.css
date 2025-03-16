@@ -136,12 +136,12 @@ align-items: center;
 }
 
 .playbar{
-
   position: fixed;
-  bottom: 0;
-  background-color: rgb(255, 255, 255);
-  width: 90%;
-  padding: 12px;
+  bottom: 25px;
+  background-color: rgb(218 218 218);
+  width: 70vw;
+  padding: 8px;
+  border-radius: 10px;
 }
 .songbutton{
   display: flex;
@@ -149,7 +149,7 @@ align-items: center;
   gap: 16px;
 }
 .songsList{
-  height: 644px;
+  height: 544px;
   overflow: auto;
   margin-bottom: 44px;
 }
@@ -180,4 +180,21 @@ align-items: center;
   font-size: 10px;
   width: 64px;
   padding: 12px;
+}
+.seekbar{
+  height: 2.5px;
+  width: 98%;
+  background-color: rgb(89, 89, 89);
+  position: absolute;
+  bottom: 0;
+  border-radius: 10px;
+  margin: 5px;
+}
+.circle{
+  height: 13px;
+  width: 13px;
+  border-radius: 30px;
+  background-color: black;
+  position: relative;
+  bottom: 6px;
 }

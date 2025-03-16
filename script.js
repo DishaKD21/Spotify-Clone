@@ -21,8 +21,8 @@ for(let index=0;index < as.length ; index++){
 async function main(){
     //get the list of all the songs
    let songs = await getSongs() 
-   console.log(songs)
-   
+  
+   //show all the songs in the playlist
   let songUL=  document.querySelector(".songsList").getElementsByTagName("ul")[0];
   for (const song of songs) {
     songUL.innerHTML = songUL.innerHTML + `<li><img src="/svg/music.svg" alt="">
@@ -33,17 +33,10 @@ async function main(){
                         <div class="playnow">
                             <span>Play Now</span>
                         <img class="invert" src="/svg/playbar.svg" alt="">
-                        </div>
-     </li>`;
+                        </div></li>`;
   }
-   //play the first song
-   var audio = new Audio(songs[0]);
-   audio.play();
+   
 
-   audio.addEventListener("loadeddata",() =>{
-    let duration = audio.duration;
-    console.log(audio.duration ,audio.currentSrc , audio.currentTime);
-    //the duration variable now holts the duration (in seconds) of the audio clip
-   });
+   
 }
 main()
