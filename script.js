@@ -1,7 +1,7 @@
 console.log("hello.starting javascript today");
 let currentSong = new Audio();
 let songs;
-
+let currFolder;
 function secondsToMinutesSeconds(seconds){
     if(isNaN(seconds) || seconds < 0){
         return "00:00";
@@ -15,27 +15,48 @@ function secondsToMinutesSeconds(seconds){
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-async function getSongs()
+async function getSongs(folder)
 {
-let a = await fetch("http://127.0.0.1:5500/songs/");
+currFolder = folder;
+let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
 let response = await a.text();
 console.log(response);
 let div = document.createElement("div");
 div.innerHTML = response;
 let as = div.getElementsByTagName("a");
-let songs = [];
+songs = [];
 for(let index=0;index < as.length ; index++){
     const element =as[index];
     if(element.href.endsWith(".mp3")){
-        songs.push(element.href.split("/songs/")[1]);
+        songs.push(element.href.split(`/${folder}/`)[1]);
     }
 }
-  return songs;
+   //show all the songs in the playlist
+   let songUL=  document.querySelector(".songsList").getElementsByTagName("ul")[0];
+   songUL.innerHTML = ""
+   for (const song of songs) {
+     songUL.innerHTML = songUL.innerHTML + `<li><img src="/svg/music.svg" alt="">
+                         <div class="info">
+                             <div> ${song.replaceAll("%20"," ")}</div>
+                             <div>Ed Sheeran</div>
+                         </div>
+                         <div class="playnow">
+                             <span>Play Now</span>
+                         <img class="invert" src="/svg/playbar.svg" alt="">
+                         </div></li>`;
+   }
+   //attach an eventlistener to each song
+   Array.from(document.querySelector(".songsList").getElementsByTagName("li")).forEach(e=>{
+     e.addEventListener("click",ekement =>{
+         console.log(e.querySelector(".info").firstElementChild.innerHTML);
+         PlayMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
+     })
+      })
 } 
 
 const PlayMusic = (track,pause=false) =>{
     // let audio = new Audio("/songs/"+track)
-    currentSong.src="/songs/" + track
+    currentSong.src = `http://127.0.0.1:5500${currFolder.replace(/^\/+/, '')}/` + track;
     if(!pause){
         currentSong.play()
       play.src = "/svg/pause.svg"
@@ -47,30 +68,10 @@ const PlayMusic = (track,pause=false) =>{
 
 async function main(){
 
-  
     //get the list of all the songs
-   songs = await getSongs() 
+   await getSongs("/songs/Top_Hits_Global") 
   PlayMusic(songs[0],true)
-   //show all the songs in the playlist
-  let songUL=  document.querySelector(".songsList").getElementsByTagName("ul")[0];
-  for (const song of songs) {
-    songUL.innerHTML = songUL.innerHTML + `<li><img src="/svg/music.svg" alt="">
-                        <div class="info">
-                            <div> ${song.replaceAll("%20"," ")}</div>
-                            <div>Ed Sheeran</div>
-                        </div>
-                        <div class="playnow">
-                            <span>Play Now</span>
-                        <img class="invert" src="/svg/playbar.svg" alt="">
-                        </div></li>`;
-  }
-  //attach an eventlistener to each song
-  Array.from(document.querySelector(".songsList").getElementsByTagName("li")).forEach(e=>{
-    e.addEventListener("click",ekement =>{
-        console.log(e.querySelector(".info").firstElementChild.innerHTML);
-        PlayMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())
-    })
-     })
+  
    
 //Attach an event listener to play ,next and previous
 play.addEventListener("click",()=>{
@@ -125,7 +126,12 @@ next.addEventListener("click",()=>{
     }
 })
 
-
+//Load the playlist whenever card is clicked
+Array.from(document.getElementsByClassName("card")).forEach(e=>{  
+    e.addEventListener("click",async item=>{
+        songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`)      
+    })
+})
 
 }
 main()
