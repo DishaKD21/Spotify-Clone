@@ -147,6 +147,7 @@ align-items: center;
   display: flex;
   justify-content: center;
   gap: 16px;
+  margin-bottom: 6px;
 }
 .songsList{
   height: 544px;
@@ -197,4 +198,5 @@ align-items: center;
   background-color: black;
   position: relative;
   bottom: 6px;
+  left: 45%;
 }
