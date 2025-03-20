@@ -46,4 +46,46 @@
     border-radius: 6px;
 }
 
+.flexcolumn{
+    display: flex;
+    flex-direction: column;
 
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin: 20px 0;
+}
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid gray;
+    margin: 5px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: rgb(62, 62, 62);
+    width: 100%;
+    margin: 50px 0;
+}
+
+.btn{
+    background-color: #19cb58;
+    padding: 9px;
+    width: 100%;
+    color: rgb(19, 19, 19);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 17px;
+}
+
+.btn:hover{
+    padding: 11px;
+    background-color: #2be36b;
+}
