@@ -133,6 +133,7 @@ align-items: center;
    outline: none;
    cursor: pointer;
    font-size:16px;
+   text-decoration: none;
 }
 .signupbtn:hover{
   font-size: 17px;
@@ -148,6 +149,7 @@ align-items: center;
   width: 79px;
   cursor: pointer;
   font-size: 16px;
+  text-decoration: none;
 }
 .loginbtn:hover{
  font-weight: bold;
@@ -260,7 +262,7 @@ align-items: center;
 @media(max-width:1400px){
    h1{
     font-size: 30px;
-    
+
    }
     .left{
       background-color: black;
