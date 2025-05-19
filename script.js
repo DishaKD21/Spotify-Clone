@@ -1,7 +1,7 @@
 let currentSong = new Audio();
 let songs = [];
 let trackUrls = [];  // URLs of songs in the current playlist
-
+let currentIndex = 0;
 function secondsToMinutesSeconds(seconds) {
     if (isNaN(seconds) || seconds < 0) return "00:00";
     const minutes = Math.floor(seconds / 60);
@@ -29,6 +29,7 @@ async function getTracksFromPlaylist(playlist) {
 }
 
 function PlayMusic(track, pause = false) {
+    currentIndex = songs.findIndex(s => s.url === track.url);
     currentSong.src = track.url;
     if (!pause) {
         currentSong.play();
@@ -114,64 +115,68 @@ async function main() {
  
  //add an event listener to previous 
  previous.addEventListener("click",()=>{
-     console.log("Previous clicked")
-     let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
-     if(index-1>=0){
-         PlayMusic(songs[index-1])
-     }
+     console.log("Previous clicked");
+       if (currentIndex > 0) {
+        PlayMusic(songs[currentIndex - 1]);
+    }
+    //  let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
+    //  if(index-1>=0){
+    //      PlayMusic(songs[index-1])
+    //  }
  })
  
  //add an event listener to next
  next.addEventListener("click",()=>{
      console.log("Next clicked")
-     let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
-     if(index+1 < songs.length){
-         PlayMusic(songs[index+1])
-     }
+     if (currentIndex < songs.length - 1) {
+        PlayMusic(songs[currentIndex + 1]);
+    }
+    //  let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
+    //  if(index+1 < songs.length){
+    //      PlayMusic(songs[index+1])
+    //  }
  })
 
 }
+// const playlists = [
+//     {
+//         folder: "Top_Hits_Global",
+//         image: "https://charts-images.scdn.co/assets/locale_en/regional/weekly/region_global_default.jpg",
+//         title: "Happy Hits!",
+//         description: "Hits to boost your mood and fill you with happiness!"
+//     },
+//     {
+//         folder: "Old_is_Gold",
+//         image: "https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO2eNlCc-default.jpg",
+//         title: "Old is Gold",
+//         description: "Classic golden tracks from the past."
+//     },
+//     {
+//         folder: "New_Trending",
+//         image: "https://i.scdn.co/image/ab67706f000000027f21d50aa6f3b4a9a7ab6c7e",
+//         title: "Trending Now",
+//         description: "Hot and trending tracks across the world!"
+//     }
+// ];
+// const container = document.querySelector('.cartContainer');
 
+// playlists.forEach(playlist => {
+//     const card = document.createElement('div');
+//     card.classList.add('card');
+//     card.setAttribute('data-folder', playlist.folder);
 
-const playlists = [
-    {
-        folder: "Top_Hits_Global",
-        image: "https://charts-images.scdn.co/assets/locale_en/regional/weekly/region_global_default.jpg",
-        title: "Happy Hits!",
-        description: "Hits to boost your mood and fill you with happiness!"
-    },
-    {
-        folder: "Old_is_Gold",
-        image: "https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO2eNlCc-default.jpg",
-        title: "Old is Gold",
-        description: "Classic golden tracks from the past."
-    },
-    {
-        folder: "New_Trending",
-        image: "https://i.scdn.co/image/ab67706f000000027f21d50aa6f3b4a9a7ab6c7e",
-        title: "Trending Now",
-        description: "Hot and trending tracks across the world!"
-    }
-];
-const container = document.querySelector('.cartContainer');
+//     card.innerHTML = `
+//         <div class="play">
+//             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="none">
+//                 <circle cx="12" cy="12" r="12" fill="#1abc54" />
+//                 <polygon points="8,6 16,12 8,18" fill="black" />
+//             </svg>
+//         </div>
+//         <img src="${playlist.image}" alt="">
+//         <h2>${playlist.title}</h2>
+//         <p>${playlist.description}</p>
+//     `;
 
-playlists.forEach(playlist => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.setAttribute('data-folder', playlist.folder);
-
-    card.innerHTML = `
-        <div class="play">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="none">
-                <circle cx="12" cy="12" r="12" fill="#1abc54" />
-                <polygon points="8,6 16,12 8,18" fill="black" />
-            </svg>
-        </div>
-        <img src="${playlist.image}" alt="">
-        <h2>${playlist.title}</h2>
-        <p>${playlist.description}</p>
-    `;
-
-    container.appendChild(card);
-});
+//     container.appendChild(card);
+// });
  main()
