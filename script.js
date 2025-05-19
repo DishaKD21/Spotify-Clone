@@ -41,43 +41,47 @@ function PlayMusic(track, pause = false) {
 
 async function main() {
     const playlists = await getTrendingPlaylists();
-    const playlistContainer = document.querySelector(".songsList ul"); // Create a <ul class=".songsList ul"></ul> in HTML
-
+    
+    const playlistContainer = document.querySelector(".playlistsUl");  // NEW: separate container
+    const trackContainer = document.querySelector(".songsList ul");        // NEW: for tracks
+    
     for (let playlist of playlists) {
         const li = document.createElement("li");
         li.innerHTML = `<strong>${playlist.playlist_name}</strong> - ${playlist.user.name}`;
         li.style.cursor = 'pointer';
 
-        li.addEventListener("click", async () => {
-            const songUL = document.querySelector(".songsList ul");
-            songUL.innerHTML = "Loading songs...";
-            songs = await getTracksFromPlaylist(playlist);
-            trackUrls = songs;
+       li.addEventListener("click", async () => {
+     trackContainer.innerHTML = "<li>Loading songs...</li>"; // Show loading
+    songs = await getTracksFromPlaylist(playlist);
+    trackUrls = songs;
 
-            songUL.innerHTML = "";
-            for (let track of songs) {
-                const trackLI = document.createElement("li");
-                trackLI.innerHTML = `<img src="/svg/music.svg" alt="">
-                    <div class="info">
-                        <div>${track.title}</div>
-                        <div>${track.artist}</div>
-                    </div>
-                    <div class="playnow">
-                        <span>Play Now</span>
-                        <img class="invert" src="/svg/playbar.svg" alt="">
-                    </div>`;
-                trackLI.addEventListener("click", () => {
-                    PlayMusic(track);
-                });
-                songUL.appendChild(trackLI);
-            }
+    trackContainer.innerHTML = ""; // Clear the library list
 
-            // Auto play first track (optional)
-            if (songs.length > 0) {
-                PlayMusic(songs[0], true);
-            }
+    for (let track of songs) {
+        const trackLI = document.createElement("li");
+        trackLI.innerHTML = `
+            <img src="/svg/music.svg" alt="">
+            <div class="info">
+                <div>${track.title}</div>
+                <div>${track.artist}</div>
+            </div>
+            <div class="playnow">
+                <span>Play Now</span>
+                <img class="invert" src="/svg/playbar.svg" alt="">
+            </div>`;
+
+        trackLI.style.cursor = 'pointer';
+        trackLI.addEventListener("click", () => {
+            PlayMusic(track);
         });
 
+         trackContainer.appendChild(trackLI);
+    }
+
+    if (songs.length > 0) {
+        PlayMusic(songs[0], true);  // Load first song but don't autoplay
+    }
+});
         playlistContainer.appendChild(li);
     }
 
