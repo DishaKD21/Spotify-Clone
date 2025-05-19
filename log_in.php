@@ -40,13 +40,17 @@
             
 
             <hr>
-            <div class="flexcolumn ">
-                <label for="email">Email or username</label>
-                <input type="email" placeholder="Email or username">
-                <a class="btn" href="">Continue</a>
-            </div>
+            <form action="login.php" method="POST" class="flexcolumn">
+    <label for="email">Email or username</label>
+    <input type="email" name="email" placeholder="Email or username" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Password" required>
+
+    <button class="btn" type="submit">Login</button>
+</form>
             <div>
-                <span>Don't have an account?<a href="Sign_up.html" style="color: rgb(223, 223, 223);">Sign up for Spotify</a></span>
+                <span>Don't have an account?<a href="Sign_up.php" style="color: rgb(223, 223, 223);">Sign up for Spotify</a></span>
             </div>
         </div>
         </div>

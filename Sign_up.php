@@ -18,7 +18,6 @@
           <h1>Sign up to start listening</h1>
         </div>
 
-        <!-- ✅ PHP FORM START -->
         <form action="register.php" method="POST" class="flexcolumn">
           <span>Email address</span>
           <input type="email" name="email" placeholder="name@domain.com" required>
@@ -30,7 +29,7 @@
 
           <button class="btn" type="submit">Next</button>
         </form>
-        <!-- ✅ PHP FORM END -->
+       
 
         <div class="separator">or</div>
 
@@ -51,7 +50,7 @@
 
         <hr>
         <span>Already have an account? 
-          <a href="log_in.html" style="color: rgb(243, 243, 243); margin-bottom: 15px;">Login here</a>
+          <a href="log_in.php" style="color: rgb(243, 243, 243); margin-bottom: 15px;">Login here</a>
         </span>
       </div>
     </div>
