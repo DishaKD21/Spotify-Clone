@@ -10,7 +10,7 @@ function secondsToMinutesSeconds(seconds) {
 }
 
 async function getTrendingPlaylists() {
-    const res = await fetch('https://discoveryprovider.audius.co/v1/playlists/trending?limit=10');
+    const res = await fetch('https://discoveryprovider.audius.co/v1/playlists/trending?limit=20');
     const json = await res.json();
     return json.data;
 }
@@ -41,49 +41,74 @@ function PlayMusic(track, pause = false) {
 
 async function main() {
     const playlists = await getTrendingPlaylists();
-    
-    const playlistContainer = document.querySelector(".playlistsUl");  // NEW: separate container
-    const trackContainer = document.querySelector(".songsList ul");        // NEW: for tracks
-    
+
+    const playlistContainer = document.querySelector(".playlistsUl");
+    const trackContainer = document.querySelector(".songsList ul");
+    const cardContainer = document.querySelector(".cartContainer");
+
     for (let playlist of playlists) {
-        const li = document.createElement("li");
-        li.innerHTML = `<strong>${playlist.playlist_name}</strong> - ${playlist.user.name}`;
-        li.style.cursor = 'pointer';
+        // ✅ Create card
+        const card = document.createElement('div');
+        card.classList.add('card');
 
-       li.addEventListener("click", async () => {
-     trackContainer.innerHTML = "<li>Loading songs...</li>"; // Show loading
-    songs = await getTracksFromPlaylist(playlist);
-    trackUrls = songs;
+        const image = 'https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO2eNlCc-default.jpg';
 
-    trackContainer.innerHTML = ""; // Clear the library list
-
-    for (let track of songs) {
-        const trackLI = document.createElement("li");
-        trackLI.innerHTML = `
-            <img src="/svg/music.svg" alt="">
-            <div class="info">
-                <div>${track.title}</div>
-                <div>${track.artist}</div>
+        card.innerHTML = `
+            <div class="play">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="none">
+                    <circle cx="12" cy="12" r="12" fill="#1abc54" />
+                    <polygon points="8,6 16,12 8,18" fill="black" />
+                </svg>
             </div>
-            <div class="playnow">
-                <span>Play Now</span>
-                <img class="invert" src="/svg/playbar.svg" alt="">
-            </div>`;
+            <img src="${image}" alt="Playlist Image">
+            <h2>${playlist.playlist_name}</h2>
+            <p>By ${playlist.user.name}</p>
+        `;
 
-        trackLI.style.cursor = 'pointer';
-        trackLI.addEventListener("click", () => {
-            PlayMusic(track);
+        card.style.cursor = 'pointer';
+
+        // ✅ On clicking card, show tracks
+        card.addEventListener("click", async () => {
+            trackContainer.innerHTML = "<li>Loading songs...</li>";
+
+            try {
+                const songs = await getTracksFromPlaylist(playlist);
+                trackUrls = songs;
+                trackContainer.innerHTML = ""; // Clear previous tracks
+
+                for (let track of songs) {
+                    const trackLI = document.createElement("li");
+                    trackLI.innerHTML = `
+                        <img src="/svg/music.svg" alt="">
+                        <div class="info">
+                            <div>${track.title}</div>
+                            <div>${track.artist}</div>
+                        </div>
+                        <div class="playnow">
+                            <span>Play Now</span>
+                            <img class="invert" src="/svg/playbar.svg" alt="">
+                        </div>`;
+                    trackLI.style.cursor = 'pointer';
+                    trackLI.addEventListener("click", () => {
+                        PlayMusic(track);
+                    });
+                    trackContainer.appendChild(trackLI);
+                }
+
+                if (songs.length > 0) {
+                    PlayMusic(songs[0], true); // Load first track but don't autoplay
+                }
+            } catch (err) {
+                trackContainer.innerHTML = "<li>Error loading songs.</li>";
+                console.error("Failed to load tracks:", err);
+            }
         });
 
-         trackContainer.appendChild(trackLI);
+        // ✅ Add to card layout
+        cardContainer.appendChild(card);
     }
 
-    if (songs.length > 0) {
-        PlayMusic(songs[0], true);  // Load first song but don't autoplay
-    }
-});
-        playlistContainer.appendChild(li);
-    }
+
 
     // Attach play/pause/seek logic like before
     play.addEventListener("click", () => {
