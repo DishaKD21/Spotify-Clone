@@ -1,3 +1,12 @@
+<?php
+
+include './db.php';
+
+if (isset($_SESSION['loggedin'])) {
+    header("Location: dashboard.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="register.css">
   <link rel="stylesheet" href="utility.css">
-  <link rel="icon" type="image/x-icon" href="/svg/spotifylogsign.svg">
+  <link rel="icon" type="image/x-icon" href="svg/spotifylogsign.svg">
   <title>Sign_up-Spotify</title>
 </head>
 
@@ -14,11 +23,12 @@
     <div class="boxsignup">
       <div class="content">
         <div>
-          <img class="invert" src="/svg/spotifylogsign.svg" alt="">
+          <img class="invert" src="svg/spotifylogsign.svg" alt="">
           <h1>Sign up to start listening</h1>
         </div>
 
-        <form action="register.php" method="POST" class="flexcolumn">
+        <form action="loading.php" method="POST" class="flexcolumn">
+          <input type="hidden" name="register" value="1">
           <span>Email address</span>
           <input type="email" name="email" placeholder="name@domain.com" required>
 

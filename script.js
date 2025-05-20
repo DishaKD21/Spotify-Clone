@@ -33,7 +33,7 @@ function PlayMusic(track, pause = false) {
     currentSong.src = track.url;
     if (!pause) {
         currentSong.play();
-        play.src = "/svg/pause.svg";
+        play.src = "svg/pause.svg";
     }
     document.querySelector(".songinfo").innerHTML = decodeURI(track.title);
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
@@ -79,14 +79,14 @@ async function main() {
                 for (let track of songs) {
                     const trackLI = document.createElement("li");
                     trackLI.innerHTML = `
-                        <img src="/svg/music.svg" alt="">
+                        <img src="svg/music.svg" alt="">
                         <div class="info">
                             <div>${track.title}</div>
                             <div>${track.artist}</div>
                         </div>
                         <div class="playnow">
                             <span>Play Now</span>
-                            <img class="invert" src="/svg/playbar.svg" alt="">
+                            <img class="invert" src="svg/playbar.svg" alt="">
                         </div>`;
                     trackLI.style.cursor = 'pointer';
                     trackLI.addEventListener("click", () => {
@@ -114,10 +114,10 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play();
-            play.src = "/svg/pause.svg";
+            play.src = "svg/pause.svg";
         } else {
             currentSong.pause();
-            play.src = "/svg/playbar.svg";
+            play.src = "svg/playbar.svg";
         }
     });
 
@@ -145,25 +145,25 @@ async function main() {
  //add an event listener to previous 
  previous.addEventListener("click",()=>{
      console.log("Previous clicked");
-       if (currentIndex > 0) {
-        PlayMusic(songs[currentIndex - 1]);
-    }
-    //  let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
-    //  if(index-1>=0){
-    //      PlayMusic(songs[index-1])
-    //  }
+    //    if (currentIndex > 0) {
+    //     PlayMusic(songs[--currentIndex]);
+    // }
+     let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
+     if(index-1>=0){
+         PlayMusic(songs[index-1])
+     }
  })
  
  //add an event listener to next
  next.addEventListener("click",()=>{
      console.log("Next clicked")
-     if (currentIndex < songs.length - 1) {
-        PlayMusic(songs[currentIndex + 1]);
-    }
-    //  let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
-    //  if(index+1 < songs.length){
-    //      PlayMusic(songs[index+1])
-    //  }
+    //  if (currentIndex < songs.length - 1) {
+    //     PlayMusic(songs[++currentIndex]);
+    // }
+     let index = songs.indexOf(currentSong.src.split("/").slice(-1) [0])
+     if(index+1 < songs.length){
+         PlayMusic(songs[index+1])
+     }
  })
 
 }

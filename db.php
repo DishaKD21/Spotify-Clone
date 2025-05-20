@@ -1,13 +1,7 @@
 <?php
-$host = 'localhost';
-$db   = 'spotify_clone';
-$user = 'root';         // change if your DB username is different
-$pass = 'root';             // change if your DB has a password
 
-$conn = new mysqli($host, $user, $pass, $db);
+session_start();
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
+error_reporting(E_ALL);
+
+$conn = mysqli_connect('localhost', 'root', 'root', 'spotify_clone');

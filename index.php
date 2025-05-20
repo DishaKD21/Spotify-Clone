@@ -6,26 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utility.css">
-    <link rel="icon" type="image/x-icon" href="/svg/spotify.svg">
+    <link rel="icon" type="image/x-icon" href="svg/spotify.svg">
     <title>Spotify- Web Player: Music for everyone</title>
+     <script src="script.js" defer></script>
 </head>
 
 <body>
     <div class="container flex bg-black">
         <div class="left">
             <div class="close">
-                <img width="40" class="invert" src="/svg/close.svg" alt="">
+                <img width="40" class="invert" src="svg/close.svg" alt="">
             </div>
             <div class="home bg-grey rounded m-1 p-1">
-                <div class="logo invert"><img src="/svg/logo.svg" alt="logo"></div>
+                <div class="logo invert"><img src="svg/logo.svg" alt="logo"></div>
                 <ul>
-                    <li><img class="invert" src="/svg/home.svg" alt="home">Home</li>
-                    <li><img class="invert" src="/svg/search.svg" alt="search">Search</li>
+                    <li><img class="invert" src="svg/home.svg" alt="home">Home</li>
+                    <li><img class="invert" src="svg/search.svg" alt="search">Search</li>
                 </ul>
             </div>
             <div class="library bg-grey rounded m-1 p-1">
                 <div class="heading">
-                    <img class="invert" src="/svg/playlist.svg" alt="">
+                    <img class="invert" src="svg/playlist.svg" alt="">
                     <h3>Your Library</h3>
                 </div>
                 <div class="songsList">
@@ -48,7 +49,7 @@
             <div class="header">
                 <div class="nav">
                     <div class="hamburgerContainer">
-                        <img width="40" class="invert hamburger" src="/svg/hamburger.svg" alt="">
+                        <img width="40" class="invert hamburger" src="svg/hamburger.svg" alt="">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffff"
                         fill="none">
                         <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="currentColor"
@@ -62,8 +63,8 @@
                     </div>    
                 </div>
                 <div class="buttons">
-                   <a class="signupbtn" href="Sign_up.html">Sign up</a>
-                   <a class="loginbtn" href="log_in.html">Log in</a>
+                   <a class="signupbtn" href="Sign_up.php">Sign up</a>
+                   <a class="loginbtn" href="log_in.php">Log in</a>
                 </div>
             </div>
             <div class="spotifyPlaylists">
@@ -111,9 +112,9 @@
           
                         </div>
                         <div class="songbutton">
-                            <img id="previous" src="/svg/previous.svg" alt="">
-                            <img id="play" src="/svg/playbar.svg" alt="">
-                            <img id="next" src="/svg/next.svg" alt="">
+                            <img id="previous" src="svg/previous.svg" alt="">
+                            <img id="play" src="svg/playbar.svg" alt="">
+                            <img id="next" src="svg/next.svg" alt="">
                         </div>
                         <div class="songtime">
     
@@ -124,7 +125,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+  
 </body>
 
 </html>
